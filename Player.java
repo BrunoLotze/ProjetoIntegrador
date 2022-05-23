@@ -292,8 +292,25 @@ public class Player{
 		if (getBoundY().intersects(objects.terminal(vars.getlvl())) && Keys.Interact == true) {
 			for (; Keys.Interact == true; Keys.Interact = false) {
 				
-			 String[] options = new String[] {"Yes", "No", "Maybe", "Cancel"};
-			    int response = JOptionPane.showOptionDialog(null, "Message", "Title", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,null, options, options[0]);
+			switch (vars.getlvl()){
+			case 1:
+				 String[] options = new String[] {"Sim", "Nao"};
+			 //Resposta é Não
+			    int response = JOptionPane.showOptionDialog(null, "r = str(input('Selecione sua resposta: '))\n\nif r = 'sim':\nprint('GamerOver')\n\nelif r = 'nao':\n print('parabens,vc passou de nivel')\n\nEste programa em Python roda?\n\n", "Python", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,null, options, options[0]);
+			    if (response == 0) {
+			    	vars.setlvl(vars.getlvl() + 1); 
+			    }else{
+			    	JOptionPane.showMessageDialog(null, "BROCHOU");
+			    }
+			    break;
+
+			case 2:
+				break;
+
+			case 3:
+				break;
+			}	
+			
 			}
 			
 		}else{
@@ -302,9 +319,27 @@ public class Player{
 
 			if (getBoundX().intersects(objects.terminal(vars.getlvl())) && Keys.Interact == true) {
 			for (; Keys.Interact == true; Keys.Interact = false) {
-				
-			 String[] options = new String[] {"Yes", "No", "Maybe", "Cancel"};
-			    int response = JOptionPane.showOptionDialog(null, "Message", "Title", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,null, options, options[0]);
+			
+
+			switch (vars.getlvl()){
+			case 1:
+				 String[] options = new String[] {"Sim", "Nao"};
+			 //Resposta é Não
+			    int response = JOptionPane.showOptionDialog(null, "r = str(input('Selecione sua resposta: '))\n\nif r = 'sim':\nprint('GamerOver')\n\nelif r = 'nao':\n print('parabens,vc passou de nivel')\n\nEste programa em Python roda?\n\n", "Python", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,null, options, options[0]);
+			    if (response == 0) {
+			    	vars.setlvl(vars.getlvl() + 1); 
+			    }else{
+			    	JOptionPane.showMessageDialog(null, "BROCHOU");
+			    }
+			    break;
+
+			case 2:
+				break;
+
+			case 3:
+				break;
+			}
+			
 			}
 			
 		}else{

@@ -58,6 +58,7 @@ public class UI{
 			dui.drawString("W A S D - Andar", 30, 200);
 			dui.drawString("Space - Correr", 30, 230);
 			dui.drawString("Shift - Andar", 30, 260);
+			dui.drawString("E - Interagir", 30, 290);
 
   			break;
   		case 2:
