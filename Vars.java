@@ -10,24 +10,25 @@ public class Vars{
 		//
 		//
 
+		//
 		//resolution screen
 		private int w = 1500;
 		private int h = 800;
 
 		//player resolution
-		private int pr = 32;
+		private int pr = 64;
 		public int br = 46;
 		public int walls = 64;
 		//player speed
 
 
-		private int lvl = 1; 
+		private static int lvl = 1; 
 
 		public void setlvl(int lvl){
 			this.lvl = lvl; 
 		}
 
-		public int getlvl(){
+		public static int getlvl(){
 			return lvl;
 		}
 
@@ -66,6 +67,7 @@ public class Vars{
 		//lv1
 		//public int s1x = (w / 2) - pr, s1y = (h / 2) - pr;
 		public int s1x = 413, s1y = 149;
+		
 
 		//////////////////////////////////////
 		//              COLORS              //
@@ -83,7 +85,9 @@ public class Vars{
 
 		Color wall1 = new Color(126,112,138);
 
+		Color black = new Color(0,0,0);
 		Color red = new Color(250, 17, 149);
+		Color orange = new Color(252, 186, 3);
 		Color green = new Color(11,234,137);
 		Color blue = new Color(13, 114, 255);
 }

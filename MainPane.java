@@ -28,9 +28,10 @@ public class MainPane extends JPanel {
 	private Timer timer;
 
 	Keys keys = new Keys();
+	Images images = new Images();
 
 	UI ui = new UI();
-	
+	Traps traps = new Traps();
 	private Player player;
 	private Objects objects;
 
@@ -41,6 +42,8 @@ public class MainPane extends JPanel {
 		//adding player
 		player = new Player(0, 0);
 
+
+		images.textures();
 		//setting First
 		vars.setlvl(1);
 		player.setLocation(vars.getlvl());
@@ -50,10 +53,13 @@ public class MainPane extends JPanel {
 		timer = new Timer(2, new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				objects.texture();
+	
 				player.interact();
 				player.collission();
-				player.render();
+				player.renderm();
+				traps.trap1();
+				player.finalchoices();
+				traps.killer();
 				repaint();
 
 			}
@@ -85,14 +91,16 @@ public class MainPane extends JPanel {
 	@Override
 	protected void paintComponent(Graphics g){
 		super.paintComponent(g);
-		if (player == null){
-			return;
-		}
 		Graphics2D r = (Graphics2D) g.create();
 
 		//level
+
+		objects.flooring(r);
 		objects.tm(r);
 		objects.wall(r);
+		objects.decour(r);
+
+		traps.trap(r);
 
 		//player
 		player.Player(r);

@@ -18,7 +18,15 @@ import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 import javax.swing.Timer;
 import java.awt.Rectangle;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.*;
+import java.awt.*;
+import java.util.*;
+import java.io.File;
+import java.awt.image.BufferedImage;
+import javax.imageio.ImageIO;
+import java.io.IOException;
 
 public class Player{ 
 
@@ -30,7 +38,6 @@ public class Player{
 	
 
 	//Directions
-
 
 	private Boolean dx = false;
 
@@ -125,9 +132,29 @@ public class Player{
 
 		switch (lvl){
 		case 1:
-			setPX(vars.s1x);
-			setPY(vars.s1y);
+			setPX(413);
+			setPY(149);
 		break;
+		case 2:
+			setPX(942);
+			setPY(233);
+		break;
+		case 3:
+			setPX(683);
+			setPY(485);
+			break;
+		case 4: 
+			setPX(683);
+			setPY(485);
+		break;
+		case 5:
+			setPX(683);
+			setPY(485);
+			break;
+		case 6:
+			setPX(683);
+			setPY(485);
+			break;
 		}
 
 	}
@@ -165,13 +192,13 @@ public class Player{
 			int bx;
 
 			if (getDX() == false){
-			bx = getPX() + vars.getpr();
+			bx = (getPX() + vars.getpr()) - 10;
 
 			}else{
-			bx = getPX() - vars.getpr()/4 + 5;
+			bx = (getPX() - vars.getpr()/4 + 5) + 10;
 			}
 
-			int by = getPY() + 8;
+			int by = getPY() + 16;
 			int pw = vars.getpr()/4 - 5;
 			int ph = vars.getpr() - vars.getpr()/2;
 
@@ -189,14 +216,14 @@ public class Player{
 			int by;
 
 			if (getDY() == false){
-			by = getPY() + vars.getpr();
+			by = (getPY() + vars.getpr()) - 10;
 
 			}else{
 
-			by = getPY() - vars.getpr()/4 + 5;
+			by = (getPY() - vars.getpr()/4 + 5) + 10;
 			}
 
-			int bx = getPX() + 8;
+			int bx = getPX() + 16;
 			int pw = vars.getpr() - vars.getpr()/2;
 			int ph = vars.getpr()/4 - 5;
 
@@ -208,6 +235,7 @@ public class Player{
 
 	public void collission(){
 		Objects objects = new Objects();
+		Traps traps = new Traps();
 
 		if (getBoundX().intersects(objects.w1(vars.getlvl()))) {
 
@@ -284,80 +312,169 @@ public class Player{
 			setGoingY(1);
 		}
 
+
+		if (getBoundX().intersects(traps.loctrap()) || (getBoundY().intersects(traps.loctrap()))) {
+			System.out.print("Morreu");
+			vars.setlvl(5);
+			setLocation(vars.getlvl());
+		}
+
+	}
+
+	public void finalchoices(){
+
+		Traps traps = new Traps();
+		System.out.print(traps.killbox());
+
+
+		if (getBoundX().intersects(traps.killbox()) && traps.getkill() == true || (getBoundY().intersects(traps.killbox())) && traps.getkill() == true ) {
+			System.out.print("Morreu");
+			vars.setlvl(5);
+			setLocation(vars.getlvl());
+		}
 	}
 
 	public void interact(){
+
 		Objects objects = new Objects();
+		String[] options_a = new String[] {"Verdadeiro", "Falso"};
+		String[] options_b = new String[] {"Falso, Por que falta o Use", "Vai ser executado"};
+		String[] restart = new String[] {"Reiniciar", "Sair"};
+		String[] win = new String[] {"Reiniciar", "Escapar"};
 		//terminals
 		if (getBoundY().intersects(objects.terminal(vars.getlvl())) && Keys.Interact == true) {
 			for (; Keys.Interact == true; Keys.Interact = false) {
 				
 			switch (vars.getlvl()){
 			case 1:
-				 String[] options = new String[] {"Sim", "Nao"};
 			 //Resposta é Não
-			    int response = JOptionPane.showOptionDialog(null, "r = str(input('Selecione sua resposta: '))\n\nif r = 'sim':\nprint('GamerOver')\n\nelif r = 'nao':\n print('parabens,vc passou de nivel')\n\nEste programa em Python roda?\n\n", "Python", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,null, options, options[0]);
-			    if (response == 0) {
-			    	vars.setlvl(vars.getlvl() + 1); 
+			    int response = JOptionPane.showOptionDialog(null, "r = str(input('Selecione sua resposta: '))\n\nif r = 'sim':\nprint('GamerOver')\n\nelif r = 'nao':\n print('parabens,vc passou de nivel')\n\nEste programa em Python roda?\n\n", "Python", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,null, options_a, options_a[0]);
+			    if (response == 1) {
+			    	vars.setlvl(2);
+			    	setLocation(vars.getlvl());
+
 			    }else{
-			    	JOptionPane.showMessageDialog(null, "BROCHOU");
+			    	vars.setlvl(5);
+					setLocation(vars.getlvl());
 			    }
 			    break;
 
 			case 2:
+			 //Resposta é Não
+			    int response2 = JOptionPane.showOptionDialog(null,  "CREATE DATABASE Lv2;\n\nCREATE TABLE UserData(\nid INT PRIMARY KEY AUTO_INCREMENT\nnome char(20),\ntempo time(2),\nsave varchar(20)\n);\n\nINSERT INTO UserData (id,nome,tempo,asve) values\n('1', 'Jorgin','00:22:29','lv2'),\n('2', 'Pedro','00:05:03','lv1'),\n('3', 'Ana','00:30:00','lv2'),\n('4', 'Maria','00:45:09','lv3');","Questão 2",JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,null, options_b, options_b[0]);
+			    if (response2 == 0) {
+			    	vars.setlvl(3);
+			    	setLocation(vars.getlvl());
+
+			    }else{
+			    	vars.setlvl(5);
+					setLocation(vars.getlvl());
+			    }
 				break;
 
-			case 3:
+			case 4:
+				int response3 = JOptionPane.showOptionDialog(null, "O Teste foi completo com sucesso, seus dados foram atualizados", "Sucesso!!!", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,null, win, win[0]);
+			    if (response3 == 0) {
+			    	vars.setlvl(1);
+			    	setLocation(vars.getlvl());
+			    }else{
+			    	System.exit(1);
+			    }
+				break;
+
+			case 5:
+				int r = JOptionPane.showOptionDialog(null, "O Teste falhou, ainda temos espectativas...","Reiniciar", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,null, restart, restart[0]);
+			    if (r == 0) {
+			    	vars.setlvl(1);
+			    	setLocation(vars.getlvl());
+
+			    }else{
+			    	 System.exit(1);
+			    }
 				break;
 			}	
-			
+				
 			}
 			
 		}else{
 			//nothing
 		}
 
-			if (getBoundX().intersects(objects.terminal(vars.getlvl())) && Keys.Interact == true) {
+		if (getBoundX().intersects(objects.terminal(vars.getlvl())) && Keys.Interact == true) {
 			for (; Keys.Interact == true; Keys.Interact = false) {
-			
-
+				
 			switch (vars.getlvl()){
 			case 1:
-				 String[] options = new String[] {"Sim", "Nao"};
 			 //Resposta é Não
-			    int response = JOptionPane.showOptionDialog(null, "r = str(input('Selecione sua resposta: '))\n\nif r = 'sim':\nprint('GamerOver')\n\nelif r = 'nao':\n print('parabens,vc passou de nivel')\n\nEste programa em Python roda?\n\n", "Python", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,null, options, options[0]);
-			    if (response == 0) {
-			    	vars.setlvl(vars.getlvl() + 1); 
+			    int response = JOptionPane.showOptionDialog(null, "r = str(input('Selecione sua resposta: '))\n\nif r = 'sim':\nprint('GamerOver')\n\nelif r = 'nao':\n print('parabens,vc passou de nivel')\n\nEste programa em Python roda?\n\n", "Python", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,null, options_a, options_a[0]);
+			    if (response == 1) {
+			    	vars.setlvl(2);
+			    	setLocation(vars.getlvl());
+
 			    }else{
-			    	JOptionPane.showMessageDialog(null, "BROCHOU");
+			    	vars.setlvl(5);
+					setLocation(vars.getlvl());
 			    }
 			    break;
 
 			case 2:
+			 //Resposta é Não
+			    int response2 = JOptionPane.showOptionDialog(null,  "CREATE DATABASE Lv2;\n\nCREATE TABLE UserData(\nid INT PRIMARY KEY AUTO_INCREMENT\nnome char(20),\ntempo time(2),\nsave varchar(20)\n);\n\nINSERT INTO UserData (id,nome,tempo,asve) values\n('1', 'Jorgin','00:22:29','lv2'),\n('2', 'Pedro','00:05:03','lv1'),\n('3', 'Ana','00:30:00','lv2'),\n('4', 'Maria','00:45:09','lv3');","Questão 2",JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,null, options_b, options_b[0]);
+			    if (response2 == 0) {
+			    	vars.setlvl(3);
+			    	setLocation(vars.getlvl());
+
+			    }else{
+			    	vars.setlvl(5);
+					setLocation(vars.getlvl());
+			    }
 				break;
 
-			case 3:
+			case 4:
+				int response3 = JOptionPane.showOptionDialog(null, "O Teste foi completo com sucesso, seus dados foram atualizados", "Sucesso!!!", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,null, win, win[0]);
+			    if (response3 == 0) {
+			    	vars.setlvl(1);
+			    	setLocation(vars.getlvl());
+			    }else{
+			    	System.exit(1);
+			    }
 				break;
+
+			case 5:
+				int r = JOptionPane.showOptionDialog(null, "O Teste falhou, ainda temos espectativas...","Reiniciar", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,null, restart, restart[0]);
+			    if (r == 0) {
+			    	vars.setlvl(1);
+			    	setLocation(vars.getlvl());
+
+			    }else{
+			    	 System.exit(1);
+			    }
+				break;
+			}	
+				
 			}
-			
-			}
-			
 		}else{
 			//nothing
 		}
 	}
 
 
+	public BufferedImage getplayerimage(){
+		try{
+		BufferedImage player = ImageIO.read(new File("assets/png/p1.png"));
+		return player;
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 
 	public void Player(Graphics2D g){
-		Graphics2D p2d = (Graphics2D) g.create();;
 
-		p2d.setColor(vars.cl1);
-		p2d.translate(getPX(),getPY());
+		Graphics2D p2d = (Graphics2D) g.create();
 
-		//pode alterar a forma para Oval
-		p2d.fill(shape);
+		p2d.drawImage(getplayerimage(), getPX(), getPY(), vars.getpr(), vars.getpr(),null);
 		p2d.dispose();
 
 
@@ -380,7 +497,7 @@ public class Player{
 	}
 
 
-	public void render(){
+	public void renderm(){
 
 		if (Keys.RunPressed == true) {
 			setPSX(12);

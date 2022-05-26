@@ -31,8 +31,15 @@ public class UI{
 	//Time meeter 
 	//Level Name
 	public void ui(Graphics2D g){
+
+		Traps traps = new Traps();
 		Vars vars = new Vars();
 		Graphics2D dui = (Graphics2D) g.create();
+
+		switch (vars.getlvl()){
+
+		default:
+
 
 		dui.setStroke(new BasicStroke(5));
 		dui.setColor(vars.green);
@@ -48,8 +55,19 @@ public class UI{
 		dui.drawLine(30,100,270,100);
 		Font font = new Font("", Font.PLAIN, 20);
  
-  		dui.setFont(font);
 
+ 		dui.setStroke(new BasicStroke(5));
+		dui.setColor(vars.orange);
+ 		dui.drawLine(1410,140,1410,600);
+		dui.drawLine(1150,140,1150,600);
+		dui.drawLine(1150,140,1410,140);
+		dui.drawLine(1150,600,1410,600);
+
+
+
+		dui.setStroke(new BasicStroke(2));
+ 		dui.setColor(vars.green);
+  		dui.setFont(font);
   		switch (vars.getlvl()){
   		case 1:
 			dui.drawString("LEVEL : 1", 30, 90);
@@ -60,18 +78,54 @@ public class UI{
 			dui.drawString("Shift - Andar", 30, 260);
 			dui.drawString("E - Interagir", 30, 290);
 
+
   			break;
   		case 2:
   			dui.drawString("LEVEL : 2", 30, 90);
-  			dui.drawString("Objetivo", 30, 150);
+  			dui.drawString("Utilize o Computador", 30, 150);
+  			dui.drawString("Sobreviva as Armadilhas", 30, 180);
+
   			break;
   		case 3:
   			dui.drawString("LEVEL : 3", 30, 90);
-  			dui.drawString("Objetivo", 30, 150);
+  			dui.drawString("Sobreviva.", 30, 150);
+  			dui.drawString("Argumente suas respostas.", 30, 180);
   			break;
   		}
 
-				
+		break;
+
+		case 4:
+			Font succ = new Font("", Font.PLAIN, 80);
+			dui.setColor(vars.green);
+			dui.setFont(succ);
+			dui.setStroke(new BasicStroke(5));
+			dui.drawLine(290,40,290,700);
+			dui.drawLine(290,40,1120,40);
+			dui.drawLine(290,700,1120,700);
+			dui.drawLine(1120,40,1120,700);
+
+			dui.drawString("SUCESSO", 500, 300);
+			break;
+
+		case 5:
+			Font death = new Font("", Font.PLAIN, 80);
+			dui.setColor(vars.red);
+			dui.setFont(death);
+			dui.setStroke(new BasicStroke(5));
+			dui.drawLine(290,40,290,700);
+			dui.drawLine(290,40,1120,40);
+			dui.drawLine(290,700,1120,700);
+			dui.drawLine(1120,40,1120,700);
+
+			dui.drawString("O TESTE FALHOU", 360, 300);
+			break;
+
+
+		}
+
+
+
 
 	}
 

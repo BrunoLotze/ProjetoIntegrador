@@ -24,11 +24,14 @@ import java.awt.*;
 //player.java
 
 public class Main{
+
+
 	public static void main(String[] args) {
 		new Main();
 		//creating little "publics"
 
 	}
+
 
 	public Main() {
 		EventQueue.invokeLater(new Runnable() {

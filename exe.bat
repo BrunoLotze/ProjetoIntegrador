@@ -6,3 +6,5 @@ javac Player.java
 javac Vars.java
 java Main
 
+pause
+
