@@ -17,6 +17,16 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 import javax.swing.Timer;
+import java.awt.Rectangle;
+import java.awt.Image;
+import javax.swing.ImageIcon;
+import javax.swing.*;
+import java.awt.*;
+import java.util.*;
+import java.io.File;
+import java.awt.image.BufferedImage;
+import javax.imageio.ImageIO;
+import java.io.IOException;
 
 public class MainPane extends JPanel {
 
@@ -29,6 +39,7 @@ public class MainPane extends JPanel {
 
 	Keys keys = new Keys();
 	Images images = new Images();
+	SQL sql = new SQL();
 
 	UI ui = new UI();
 	Traps traps = new Traps();
@@ -41,6 +52,12 @@ public class MainPane extends JPanel {
 
 		//adding player
 		player = new Player(0, 0);
+
+
+		String n =  JOptionPane.showInputDialog(null,"Coloque o seu nome"); 
+		sql.createUser(n);
+		sql.getid(n);
+		System.out.println("Id capturado eh: " + sql.getidjogador());
 
 
 		images.textures();

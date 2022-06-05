@@ -21,6 +21,8 @@ import java.awt.Rectangle;
 import java.awt.*;
 import javax.swing.*;
 import java.awt.geom.Line2D;
+import java.sql.*;
+
 
 public class UI{
 
@@ -32,6 +34,8 @@ public class UI{
 	//Level Name
 	public void ui(Graphics2D g){
 
+
+		SQL sql = new SQL();
 		Traps traps = new Traps();
 		Vars vars = new Vars();
 		Graphics2D dui = (Graphics2D) g.create();
@@ -55,13 +59,39 @@ public class UI{
 		dui.drawLine(30,100,270,100);
 		Font font = new Font("", Font.PLAIN, 20);
  
-
+  		dui.setFont(font);
  		dui.setStroke(new BasicStroke(5));
 		dui.setColor(vars.orange);
  		dui.drawLine(1410,140,1410,600);
 		dui.drawLine(1150,140,1150,600);
 		dui.drawLine(1150,140,1410,140);
 		dui.drawLine(1150,600,1410,600);
+		dui.drawString("High Score ", 1220, 180);
+		Font font2 = new Font("", Font.PLAIN, 15);
+		dui.setFont(font2);
+		dui.drawString("Nome      C      E",1210,220);
+
+      	String query = "SELECT * FROM reg ORDER BY NumV DESC LIMIT 8";
+
+        try(Connection con  = sql.getConnection(); PreparedStatement ps = con.prepareStatement(query);){
+          ps.execute();
+          ResultSet rs = ps.executeQuery(query);
+          int i = 0;
+          while (rs.next()) {
+          	i = i + 30; 
+            String name = rs.getString("Nome");
+            String nump = rs.getString("Nump");
+            String numv = rs.getString("NumV");
+            String a = (name + "         " + numv + "   /   " + nump + " ");
+            dui.drawString(a, 1190, 250 + (i));
+         }
+        }catch(Exception e){
+
+          e.printStackTrace();
+          System.out.println("Erro Digitar");
+        
+
+      }
 
 
 

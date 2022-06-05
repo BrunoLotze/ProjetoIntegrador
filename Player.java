@@ -234,6 +234,7 @@ public class Player{
 	}
 
 	public void collission(){
+		SQL sql = new SQL();
 		Objects objects = new Objects();
 		Traps traps = new Traps();
 
@@ -315,6 +316,7 @@ public class Player{
 
 		if (getBoundX().intersects(traps.loctrap()) || (getBoundY().intersects(traps.loctrap()))) {
 			System.out.print("Morreu");
+			sql.setpd(sql.getidjogador());
 			vars.setlvl(5);
 			setLocation(vars.getlvl());
 		}
@@ -322,19 +324,20 @@ public class Player{
 	}
 
 	public void finalchoices(){
+		SQL sql = new SQL();
 
 		Traps traps = new Traps();
-		System.out.print(traps.killbox());
-
 
 		if (getBoundX().intersects(traps.killbox()) && traps.getkill() == true || (getBoundY().intersects(traps.killbox())) && traps.getkill() == true ) {
 			System.out.print("Morreu");
+			sql.setpd(sql.getidjogador());
 			vars.setlvl(5);
 			setLocation(vars.getlvl());
 		}
 	}
 
 	public void interact(){
+		SQL sql = new SQL();
 
 		Objects objects = new Objects();
 		String[] options_a = new String[] {"Verdadeiro", "Falso"};
@@ -350,10 +353,12 @@ public class Player{
 			 //Resposta é Não
 			    int response = JOptionPane.showOptionDialog(null, "r = str(input('Selecione sua resposta: '))\n\nif r = 'sim':\nprint('GamerOver')\n\nelif r = 'nao':\n print('parabens,vc passou de nivel')\n\nEste programa em Python roda?\n\n", "Python", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,null, options_a, options_a[0]);
 			    if (response == 1) {
+			    	sql.setpp(sql.getidjogador());
 			    	vars.setlvl(2);
 			    	setLocation(vars.getlvl());
 
 			    }else{
+					sql.setpd(sql.getidjogador());
 			    	vars.setlvl(5);
 					setLocation(vars.getlvl());
 			    }
@@ -363,11 +368,14 @@ public class Player{
 			 //Resposta é Não
 			    int response2 = JOptionPane.showOptionDialog(null,  "CREATE DATABASE Lv2;\n\nCREATE TABLE UserData(\nid INT PRIMARY KEY AUTO_INCREMENT\nnome char(20),\ntempo time(2),\nsave varchar(20)\n);\n\nINSERT INTO UserData (id,nome,tempo,asve) values\n('1', 'Jorgin','00:22:29','lv2'),\n('2', 'Pedro','00:05:03','lv1'),\n('3', 'Ana','00:30:00','lv2'),\n('4', 'Maria','00:45:09','lv3');","Questão 2",JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,null, options_b, options_b[0]);
 			    if (response2 == 0) {
+		
+			    	sql.setpp(sql.getidjogador());
 			    	vars.setlvl(3);
 			    	setLocation(vars.getlvl());
 
 			    }else{
 			    	vars.setlvl(5);
+					sql.setpd(sql.getidjogador());
 					setLocation(vars.getlvl());
 			    }
 				break;
@@ -408,12 +416,14 @@ public class Player{
 			 //Resposta é Não
 			    int response = JOptionPane.showOptionDialog(null, "r = str(input('Selecione sua resposta: '))\n\nif r = 'sim':\nprint('GamerOver')\n\nelif r = 'nao':\n print('parabens,vc passou de nivel')\n\nEste programa em Python roda?\n\n", "Python", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,null, options_a, options_a[0]);
 			    if (response == 1) {
+			    	sql.setpp(sql.getidjogador());	    	
 			    	vars.setlvl(2);
 			    	setLocation(vars.getlvl());
 
 			    }else{
 			    	vars.setlvl(5);
 					setLocation(vars.getlvl());
+					sql.setpd(sql.getidjogador());
 			    }
 			    break;
 
@@ -421,12 +431,15 @@ public class Player{
 			 //Resposta é Não
 			    int response2 = JOptionPane.showOptionDialog(null,  "CREATE DATABASE Lv2;\n\nCREATE TABLE UserData(\nid INT PRIMARY KEY AUTO_INCREMENT\nnome char(20),\ntempo time(2),\nsave varchar(20)\n);\n\nINSERT INTO UserData (id,nome,tempo,asve) values\n('1', 'Jorgin','00:22:29','lv2'),\n('2', 'Pedro','00:05:03','lv1'),\n('3', 'Ana','00:30:00','lv2'),\n('4', 'Maria','00:45:09','lv3');","Questão 2",JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,null, options_b, options_b[0]);
 			    if (response2 == 0) {
+					sql.setpp(sql.getidjogador());	
 			    	vars.setlvl(3);
 			    	setLocation(vars.getlvl());
+
 
 			    }else{
 			    	vars.setlvl(5);
 					setLocation(vars.getlvl());
+					sql.setpd(sql.getidjogador());
 			    }
 				break;
 

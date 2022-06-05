@@ -213,6 +213,8 @@ public class Traps{
 
 
 	public void killer(){
+		SQL sql = new SQL();
+
 		switch (vars.getlvl()) {
 			case 3:
 				
@@ -222,6 +224,7 @@ public class Traps{
 					if (gettime() == 0) {
 						if (getkill() == false) {						
 							setkill(true);
+							sql.setpp(sql.getidjogador());
 							questionset(2);
 							timeset(600);
 						}
@@ -236,6 +239,7 @@ public class Traps{
 					if (gettime() == 0) {
 						if (getkill() == false) {
 							setkill(true);
+							sql.setpp(sql.getidjogador());
 							questionset(3);
 							timeset(600);
 						}
@@ -247,6 +251,7 @@ public class Traps{
 					if (gettime() == 0) {
 						if (getkill() == false){
 							setkill(true);
+							sql.setpp(sql.getidjogador());
 							vars.setlvl(4);
 							questionset(1);
 						}
