@@ -12,7 +12,7 @@ public class Images{
 	//guarda e renderiza as imagens 
 
 
-	public static BufferedImage w1,w1_1, w2, w3,w3_2,w6, t1, t2, t3,t5, tree, terminal, box, pbox, door, pc, enemy, robo, dialog;
+	public static BufferedImage w1,w1_1, w2, w3,w3_2,w6, t1, t2, t3,t5, tree, terminal,pbox, door, pc, enemy, robo, dialog;
 
 
 	public void textures(){
@@ -30,7 +30,6 @@ public class Images{
 		w6 = ImageIO.read(new File("assets/png/w6.png"));
 		tree = ImageIO.read(new File("assets/png/tree.png"));
 		terminal = ImageIO.read(new File("assets/png/terminal.png"));
-		box = ImageIO.read(new File("assets/png/box.png"));
 		pbox =  ImageIO.read(new File("assets/png/pbox.png"));
 		door =  ImageIO.read(new File("assets/png/door.png"));
 		pc = ImageIO.read(new File("assets/png/pc.png"));
@@ -40,7 +39,7 @@ public class Images{
 
 
 	} catch (IOException ex){
-		System.out.print("Nope");
+		System.out.println("Nope Imagem não processada");
 	}
 	}
 
